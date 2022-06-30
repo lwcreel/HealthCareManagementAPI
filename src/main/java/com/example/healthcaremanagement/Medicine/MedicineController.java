@@ -2,6 +2,7 @@ package com.example.healthcaremanagement.Medicine;
 
 import com.example.healthcaremanagement.Medicine.Medicine;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +21,13 @@ public class MedicineController {
     private final MedicineRepository repository;
 
     @PostMapping("/medicines")
+    @PreAuthorize("hasAuthority('ADMIN')")
     Medicine newMedicine(@RequestBody Medicine newMedicine) {
         return repository.save(newMedicine);
     }
 
     @PutMapping("/medicines/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     Medicine updateMedicine(@RequestBody Medicine newMedicine, @PathVariable Long id) {
 
         return repository.findById(id)
@@ -42,11 +45,13 @@ public class MedicineController {
     }
 
     @GetMapping("/medicines")
+    @PreAuthorize("hasAuthority('ADMIN')")
     List<Medicine> all() {
         return repository.findAll();
     }
 
     @GetMapping("/medicines/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     Medicine one(@PathVariable Long id) {
 
         return repository.findById(id)
@@ -54,6 +59,7 @@ public class MedicineController {
     }
 
     @DeleteMapping("/medicines/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     void deleteMedicine(@PathVariable Long id) {
 
         Optional<Medicine> medicine = repository.findById(id);

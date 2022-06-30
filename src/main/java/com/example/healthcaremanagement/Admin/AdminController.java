@@ -5,6 +5,7 @@ import com.example.healthcaremanagement.User.UserNotFoundException;
 import com.example.healthcaremanagement.User.UserRepository;
 import com.example.healthcaremanagement.Medicine.MedicineRepository;
 import com.example.healthcaremanagement.Report.ReportRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ public class AdminController {
     ReportRepository reportRepository;
 
     @GetMapping(value = "/admin/login")
+    @PreAuthorize("hasAuthority('ADMIN')")
     String loginAdmin (@RequestParam("id") Long id,
                       @RequestParam("password") String password) {
 

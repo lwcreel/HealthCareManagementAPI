@@ -3,6 +3,7 @@ package com.example.healthcaremanagement.Report;
 import com.example.healthcaremanagement.User.User;
 import com.example.healthcaremanagement.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ public class ReportController {
     UserRepository userRepository;
 
     @GetMapping(value = "/reports")
+    @PreAuthorize("hasAuthority('ADMIN')")
     List<Report> getAllReports () {
 
         return repository.findAll();
