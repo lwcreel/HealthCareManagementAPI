@@ -63,9 +63,7 @@ public class ReportController {
                 .map(report -> {
                     report.setCustomerId(newReport.getCustomerId());
                     return repository.save(report);
-                }).orElseGet(() -> {
-                    return repository.save(newReport);
-                });
+                }).orElseGet(() -> repository.save(newReport));
     }
 
     @DeleteMapping(value = "/reports")
