@@ -1,10 +1,13 @@
 package com.example.healthcaremanagement;
 
+import com.example.healthcaremanagement.Models.ERole;
 import com.example.healthcaremanagement.Models.Medicine;
+import com.example.healthcaremanagement.Models.Role;
 import com.example.healthcaremanagement.Repositories.MedicineRepository;
 import com.example.healthcaremanagement.Models.Report;
 import com.example.healthcaremanagement.Repositories.ReportRepository;
 import com.example.healthcaremanagement.Models.User;
+import com.example.healthcaremanagement.Repositories.RoleRepository;
 import com.example.healthcaremanagement.Repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +25,7 @@ public class LoadDatabase {
     private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(UserRepository userRepository, ReportRepository reportRepository, MedicineRepository medicineRepository) {
+    CommandLineRunner initDatabase(UserRepository userRepository, ReportRepository reportRepository, MedicineRepository medicineRepository, RoleRepository roleRepository) {
 
         BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
 
@@ -31,10 +34,14 @@ public class LoadDatabase {
         meds.add(new Medicine(2, 10, "Ibuprofen", "Generic", "Headaches, Fever, Pain", "2023", 100, new ArrayList<>()));
         meds.add(new Medicine(3, 10, "Penicillin", "Generic", "Antibiotic", "2023", 100, new ArrayList<>()));
 
+        List<Role> roles = new ArrayList<>();
+        roles.add(new Role(ERole.ROLE_USER));
+        roles.add(new Role(ERole.ROLE_ADMIN));
+
         List<User> users = new ArrayList<>();
-        users.add(new User(1, 123456789, 1000, false, "12/12/1912", "Joe", "Doe",  "johndoe@example.com", "johndoe@example.com", bcryptPasswordEncoder.encode("Ex@mple1$%"), meds, new ArrayList<>()));
-        users.add(new User(1, 123456789, 1000, true, "12/12/1912", "Jane", "Doe",  "janedoe@example.com", "johndoe@example.com", bcryptPasswordEncoder.encode("Ex@mple2$%"), meds, new ArrayList<>()));
-        users.add(new User(1, 123456789, 1000, false, "12/12/1912", "Jack", "Doe",  "jackdoe@example.com", "jackdoe@example.com", bcryptPasswordEncoder.encode("Ex@mple3$%"), meds, new ArrayList<>()));
+//        users.add(new User(1, 123456789, 1000, false, "12/12/1912", "Joe", "Doe",  "johndoe@example.com", "johndoe@example.com", bcryptPasswordEncoder.encode("Ex@mple1$%"), meds, new ArrayList<>()));
+//        users.add(new User(1, 123456789, 1000, true, "12/12/1912", "Jane", "Doe",  "janedoe@example.com", "johndoe@example.com", bcryptPasswordEncoder.encode("Ex@mple2$%"), meds, new ArrayList<>()));
+//        users.add(new User(1, 123456789, 1000, false, "12/12/1912", "Jack", "Doe",  "jackdoe@example.com", "jackdoe@example.com", bcryptPasswordEncoder.encode("Ex@mple3$%"), meds, new ArrayList<>()));
 
        return args -> {
 
@@ -47,10 +54,13 @@ public class LoadDatabase {
             log.info("Force create empty Report table");
             reportRepository.save(new Report());
 
+            roleRepository.save(roles.get(0));
+            roleRepository.save(roles.get(1));
+
             // Load user table
-            log.info("Preloading " + userRepository.save(users.get(0)));
-            log.info("Preloading " + userRepository.save(users.get(1)));
-            log.info("Preloading " + userRepository.save(users.get(2)));
+//            log.info("Preloading " + userRepository.save(users.get(0)));
+//            log.info("Preloading " + userRepository.save(users.get(1)));
+//            log.info("Preloading " + userRepository.save(users.get(2)));
 
         };
     }

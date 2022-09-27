@@ -1,4 +1,4 @@
-package com.example.healthcaremanagement.Services;
+package com.example.healthcaremanagement.Security.services;
 
 import com.example.healthcaremanagement.Models.User;
 import com.example.healthcaremanagement.Repositories.UserRepository;
@@ -8,20 +8,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-
     @Autowired
-    private UserRepository repository;
+    UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-        User user = repository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-
-        return user;
+        return UserDetailsImpl.build(user);
     }
+
 }

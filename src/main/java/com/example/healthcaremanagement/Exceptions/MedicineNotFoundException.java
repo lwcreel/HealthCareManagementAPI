@@ -2,7 +2,7 @@ package com.example.healthcaremanagement.Exceptions;
 
 public class MedicineNotFoundException extends RuntimeException {
 
-    MedicineNotFoundException(Long id) {
+    public MedicineNotFoundException(Long id) {
         super("Could not find medicine " + id);
     }
 }
