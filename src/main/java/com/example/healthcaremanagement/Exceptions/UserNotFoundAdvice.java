@@ -1,4 +1,4 @@
-package com.example.healthcaremanagement.Medicine;
+package com.example.healthcaremanagement.Exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class MedicineNotFoundAdvice {
+public class UserNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(MedicineNotFoundException.class)
+    @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    String customerNotFoundHandler(MedicineNotFoundException ex) {
+    String customerNotFoundHandler(UserNotFoundException ex) {
         return ex.getMessage();
     }
 }

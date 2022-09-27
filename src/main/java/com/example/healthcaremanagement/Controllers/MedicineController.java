@@ -1,6 +1,8 @@
-package com.example.healthcaremanagement.Medicine;
+package com.example.healthcaremanagement.Controllers;
 
-import com.example.healthcaremanagement.Medicine.Medicine;
+import com.example.healthcaremanagement.Exceptions.MedicineNotFoundException;
+import com.example.healthcaremanagement.Repositories.MedicineRepository;
+import com.example.healthcaremanagement.Models.Medicine;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -48,6 +53,27 @@ public class MedicineController {
     @PreAuthorize("hasAuthority('ADMIN')")
     List<Medicine> all() {
         return repository.findAll();
+    }
+
+    @GetMapping("/medicines/user")
+    //@PreAuthorize("hasAuthority('USER')")
+    List<Map> listMeds() {
+
+        List<Map> retval = new ArrayList<>();
+        List<Medicine> meds = repository.findAll();
+
+        for (Medicine m: meds) {
+            Map<String, String> map = new HashMap<>() {
+                {
+                    put("id", Long.toString(m.getId()));
+                    put("medicineName", m.getMedName());
+                    put("price", Integer.toString(m.getCostFactor()));
+                    put("quantity", Integer.toString(0));
+                }
+            };
+        }
+
+        return retval;
     }
 
     @GetMapping("/medicines/{id}")

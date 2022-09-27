@@ -1,7 +1,9 @@
-package com.example.healthcaremanagement.Report;
+package com.example.healthcaremanagement.Controllers;
 
-import com.example.healthcaremanagement.User.User;
-import com.example.healthcaremanagement.User.UserRepository;
+import com.example.healthcaremanagement.Models.Report;
+import com.example.healthcaremanagement.Exceptions.ReportNotFoundException;
+import com.example.healthcaremanagement.Repositories.ReportRepository;
+import com.example.healthcaremanagement.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;

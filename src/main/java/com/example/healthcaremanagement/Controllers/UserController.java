@@ -1,5 +1,8 @@
-package com.example.healthcaremanagement.User;
+package com.example.healthcaremanagement.Controllers;
 
+import com.example.healthcaremanagement.Models.User;
+import com.example.healthcaremanagement.Exceptions.UserNotFoundException;
+import com.example.healthcaremanagement.Repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;

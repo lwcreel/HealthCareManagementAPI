@@ -1,6 +1,6 @@
-package com.example.healthcaremanagement.Medicine;
+package com.example.healthcaremanagement.Models;
 
-import com.example.healthcaremanagement.User.User;
+import com.example.healthcaremanagement.Models.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

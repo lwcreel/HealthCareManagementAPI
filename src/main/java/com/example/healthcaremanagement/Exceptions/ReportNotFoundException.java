@@ -1,4 +1,4 @@
-package com.example.healthcaremanagement.Report;
+package com.example.healthcaremanagement.Exceptions;
 
 public class ReportNotFoundException extends RuntimeException {
 

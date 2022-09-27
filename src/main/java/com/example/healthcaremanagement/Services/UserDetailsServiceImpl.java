@@ -1,5 +1,7 @@
-package com.example.healthcaremanagement.User;
+package com.example.healthcaremanagement.Services;
 
+import com.example.healthcaremanagement.Models.User;
+import com.example.healthcaremanagement.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,10 +1,8 @@
-package com.example.healthcaremanagement.Admin;
+package com.example.healthcaremanagement.Controllers;
 
-import com.example.healthcaremanagement.User.User;
-import com.example.healthcaremanagement.User.UserNotFoundException;
-import com.example.healthcaremanagement.User.UserRepository;
-import com.example.healthcaremanagement.Medicine.MedicineRepository;
-import com.example.healthcaremanagement.Report.ReportRepository;
+import com.example.healthcaremanagement.Models.User;
+import com.example.healthcaremanagement.Exceptions.UserNotFoundException;
+import com.example.healthcaremanagement.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;

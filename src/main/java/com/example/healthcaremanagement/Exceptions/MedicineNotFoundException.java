@@ -1,4 +1,4 @@
-package com.example.healthcaremanagement.Medicine;
+package com.example.healthcaremanagement.Exceptions;
 
 public class MedicineNotFoundException extends RuntimeException {
 

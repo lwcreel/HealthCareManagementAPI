@@ -1,4 +1,4 @@
-package com.example.healthcaremanagement.Report;
+package com.example.healthcaremanagement.Models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

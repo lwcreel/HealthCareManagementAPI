@@ -1,11 +1,11 @@
 package com.example.healthcaremanagement;
 
-import com.example.healthcaremanagement.Medicine.Medicine;
-import com.example.healthcaremanagement.Medicine.MedicineRepository;
-import com.example.healthcaremanagement.Report.Report;
-import com.example.healthcaremanagement.Report.ReportRepository;
-import com.example.healthcaremanagement.User.User;
-import com.example.healthcaremanagement.User.UserRepository;
+import com.example.healthcaremanagement.Models.Medicine;
+import com.example.healthcaremanagement.Repositories.MedicineRepository;
+import com.example.healthcaremanagement.Models.Report;
+import com.example.healthcaremanagement.Repositories.ReportRepository;
+import com.example.healthcaremanagement.Models.User;
+import com.example.healthcaremanagement.Repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

@@ -1,4 +1,4 @@
-package com.example.healthcaremanagement.User;
+package com.example.healthcaremanagement.Exceptions;
 
 public class UserNotFoundException extends RuntimeException {
 
