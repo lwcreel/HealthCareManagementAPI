@@ -17,7 +17,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+
+import static com.example.healthcaremanagement.Models.ERole.ROLE_ADMIN;
 
 @Configuration
 public class LoadDatabase {
@@ -35,15 +38,17 @@ public class LoadDatabase {
         meds.add(new Medicine(3, 10, "Penicillin", "Generic", "Antibiotic", "2023", 100, new ArrayList<>()));
 
         List<Role> roles = new ArrayList<>();
+        roles.add(new Role(ROLE_ADMIN));
         roles.add(new Role(ERole.ROLE_USER));
-        roles.add(new Role(ERole.ROLE_ADMIN));
 
         List<User> users = new ArrayList<>();
 //        users.add(new User(1, 123456789, 1000, false, "12/12/1912", "Joe", "Doe",  "johndoe@example.com", "johndoe@example.com", bcryptPasswordEncoder.encode("Ex@mple1$%"), meds, new ArrayList<>()));
 //        users.add(new User(1, 123456789, 1000, true, "12/12/1912", "Jane", "Doe",  "janedoe@example.com", "johndoe@example.com", bcryptPasswordEncoder.encode("Ex@mple2$%"), meds, new ArrayList<>()));
 //        users.add(new User(1, 123456789, 1000, false, "12/12/1912", "Jack", "Doe",  "jackdoe@example.com", "jackdoe@example.com", bcryptPasswordEncoder.encode("Ex@mple3$%"), meds, new ArrayList<>()));
+//        users.add(new User("Admin", "test_admin@test.com", bcryptPasswordEncoder.encode("admin"), "Jane", "Doe", 123456789L, new HashSet<>()));
+//        users.add(new User("User", "test_user@test.com", bcryptPasswordEncoder.encode("user"), "John", "Doe", 123456789L,  new HashSet<>()));
 
-       return args -> {
+        return args -> {
 
             // Load med table
             log.info("Preloading " + medicineRepository.save(meds.get(0)));

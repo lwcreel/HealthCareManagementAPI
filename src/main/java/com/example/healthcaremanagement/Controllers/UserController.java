@@ -4,7 +4,9 @@ import com.example.healthcaremanagement.Models.User;
 import com.example.healthcaremanagement.Exceptions.UserNotFoundException;
 import com.example.healthcaremanagement.Repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     private final UserRepository repository;
@@ -48,9 +51,9 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    List<User> getAllUsers(Principal principal) {
-        return repository.findAll();
+    @PreAuthorize("hasRole('ADMIN')")
+    ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/user")
@@ -74,7 +77,7 @@ public class UserController {
     }
 
     @DeleteMapping("/user")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     void deleteUserByUserId (@RequestParam ("id") Long id) {
 
         Optional<User> user = repository.findById(id);

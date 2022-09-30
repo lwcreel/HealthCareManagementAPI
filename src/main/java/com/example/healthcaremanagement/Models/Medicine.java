@@ -23,7 +23,7 @@ public class Medicine {
     @Getter @Setter private String companyName;
     @Getter @Setter private String uses;
     @Getter @Setter private String expDate;
-    @Getter @Setter private int costFactor;
+    @Getter @Setter private double price;
 
     @ManyToMany(targetEntity = User.class)
     @Getter @Setter private List<User> userList;
