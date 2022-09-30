@@ -1,5 +1,9 @@
-FROM ibm-semeru-runtimes:11
-RUN mkdir /opt/app
-COPY japp.jar /opt/app
-EXPOSE 8080
-CMD ["java", "-jar", "/opt/app/japp.jar"]
+FROM openjdk:8-jdk-alpine
+WORKDIR /health-care-api
+COPY build.gradle ./
+COPY settings.gradle ./
+COPY gradlew ./
+COPY gradlew.bat ./
+COPY src ./src
+ENV JAVA_OPTS=""
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
